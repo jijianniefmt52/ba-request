@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F2F2F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Forever BA">
+<title>Forever Makeup BA Request</title>
+<style>
+:root{
+  /* Layout: iOS inset-grouped lists on a soft grey canvas; translucent nav bar on top, translucent action bar at the bottom. One rose accent, violet for Tester. */
+  --bg:#F2F2F7;
+  --card:#FFFFFF;
+  --label:#000000;
+  --label2:rgba(60,60,67,.6);
+  --label3:rgba(60,60,67,.3);
+  --sep:rgba(60,60,67,.2);
+  --fill:rgba(118,118,128,.12);
+  --fill2:rgba(120,120,128,.2);
+  --accent:#C2305E;
+  --accent-tint:rgba(194,48,94,.10);
+  --violet:#7E4FC2;
+  --violet-tint:rgba(126,79,194,.10);
+  --green:#34C759;
+  --orange:#FF9500; --orange-tint:rgba(255,149,0,.14);
+  --red:#FF3B30;
+  --bar:rgba(249,249,249,.84);
+  --alert:rgba(242,242,247,.94);
+  --seg-on:#FFFFFF;
+  --desk:#E5E5EA;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue","Segoe UI",Roboto,Arial,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#000000; --card:#1C1C1E; --label:#FFFFFF;
+    --label2:rgba(235,235,245,.6); --label3:rgba(235,235,245,.3); --sep:rgba(84,84,88,.65);
+    --fill:rgba(118,118,128,.24); --fill2:rgba(120,120,128,.36);
+    --accent:#F0628C; --accent-tint:rgba(240,98,140,.16);
+    --violet:#A983F2; --violet-tint:rgba(169,131,242,.18);
+    --green:#30D158; --orange:#FF9F0A; --orange-tint:rgba(255,159,10,.18); --red:#FF453A;
+    --bar:rgba(22,22,24,.84); --alert:rgba(44,44,46,.94); --seg-on:#636366; --desk:#111113;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#000000; --card:#1C1C1E; --label:#FFFFFF;
+  --label2:rgba(235,235,245,.6); --label3:rgba(235,235,245,.3); --sep:rgba(84,84,88,.65);
+  --fill:rgba(118,118,128,.24); --fill2:rgba(120,120,128,.36);
+  --accent:#F0628C; --accent-tint:rgba(240,98,140,.16);
+  --violet:#A983F2; --violet-tint:rgba(169,131,242,.18);
+  --green:#30D158; --orange:#FF9F0A; --orange-tint:rgba(255,159,10,.18); --red:#FF453A;
+  --bar:rgba(22,22,24,.84); --alert:rgba(44,44,46,.94); --seg-on:#636366; --desk:#111113;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--label);font-family:var(--font);font-size:17px;line-height:1.3;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
+#app{min-height:100%;display:flex;justify-content:center}
+.shell{width:100%;max-width:440px;min-height:100%;display:flex;flex-direction:column;background:var(--bg);position:relative}
+@media (min-width:500px){
+  body{background:var(--desk)}
+  .shell{box-shadow:0 0 0 .5px var(--sep),0 40px 90px -40px rgba(0,0,0,.35)}
+}
+button{font:inherit;color:inherit;letter-spacing:inherit}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 55%,transparent);outline-offset:2px;border-radius:10px}
+
+/* Nav bar */
+.nav{position:sticky;top:0;z-index:20;background:var(--bar);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:.5px solid var(--sep)}
+.nav-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:46px;padding:0 6px}
+.nl{justify-self:start}
+.nc{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.nr{justify-self:end;padding-right:10px}
+.navbtn{display:inline-flex;align-items:center;gap:3px;border:0;background:none;color:var(--accent);font-size:17px;padding:8px 8px;cursor:pointer}
+.navbtn svg{width:11px;height:19px}
+.prog{height:2px}
+.prog span{display:block;height:100%;background:var(--accent);transition:width .35s ease}
+.demo-pill{font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--orange);background:var(--orange-tint);padding:3px 8px;border-radius:99px}
+
+/* Large title */
+.lt{padding:18px 20px 2px}
+.lt h1{font-size:34px;font-weight:700;letter-spacing:-.025em;line-height:1.08;margin:0;text-wrap:balance}
+.lt .sub{margin:6px 0 0;color:var(--label2);font-size:15px;line-height:1.35;letter-spacing:-.005em}
+.brandrow{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--label2);margin-bottom:12px;letter-spacing:0}
+.appicon{width:26px;height:26px;border-radius:7px;background:linear-gradient(150deg,#EC7A9E 0%,#C2305E 60%,#9E2550 100%);display:grid;place-items:center;box-shadow:0 1px 2px rgba(0,0,0,.18)}
+.appicon svg{width:16px;height:16px}
+.bname{display:flex;flex-direction:column;line-height:1.15;color:var(--label);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.bsub{font-size:11.5px;font-weight:500;color:var(--label2);letter-spacing:0;text-transform:none}
+.brandrow .appicon{width:32px;height:32px;border-radius:8px}
+.brandrow .appicon svg{width:19px;height:19px}
+
+/* Grouped lists */
+main{flex:1;padding:2px 0 28px}
+.group{margin:22px 16px 0}
+.gh{font-size:13px;font-weight:400;text-transform:uppercase;letter-spacing:.01em;color:var(--label2);margin:0 16px 7px;display:flex;justify-content:space-between}
+.list{background:var(--card);border-radius:14px;overflow:hidden}
+.gf{font-size:13px;color:var(--label2);margin:7px 16px 0;line-height:1.38;letter-spacing:0}
+.row{position:relative;display:flex;align-items:center;gap:12px;min-height:46px;padding:11px 16px;width:100%;border:0;background:var(--card);text-align:left;font-size:17px}
+.row + .row::before,.prow + .prow::before{content:"";position:absolute;top:0;left:16px;right:0;height:.5px;background:var(--sep)}
+.row.ic + .row.ic::before,.prow + .prow::before{left:68px}
+.rl{flex:1;min-width:0;display:flex;align-items:center;gap:10px}
+.rv{color:var(--label2);text-align:right;font-variant-numeric:tabular-nums;max-width:62%;overflow-wrap:anywhere}
+.tap{cursor:pointer;transition:background .15s}
+.tap:active{background:var(--fill)}
+.chev{color:var(--label3);width:8px;height:14px;flex:none}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+.dot.ok{background:var(--green)} .dot.warn{background:var(--orange)} .dot.done{background:var(--violet)}
+.two{display:block;min-width:0}
+.two strong{display:block;font-weight:400;font-size:17px;line-height:1.25}
+.two small{display:block;font-size:13px;color:var(--label2);margin-top:2px;font-variant-numeric:tabular-nums;letter-spacing:0}
+.danger{color:var(--red);justify-content:center}
+.col{flex-direction:column;align-items:stretch;gap:10px}
+.muted{color:var(--label2)}
+.av{width:40px;height:40px;border-radius:10px;background:var(--fill);color:var(--label2);display:grid;place-items:center;font-size:14px;font-weight:600;letter-spacing:.02em;flex:none}
+.av.round{border-radius:50%;background:var(--accent-tint);color:var(--accent)}
+
+/* Search + segmented control */
+.tools{padding:14px 16px 0}
+.search{display:flex;align-items:center;gap:6px;height:38px;border-radius:11px;background:var(--fill);padding:0 7px 0 9px}
+.search > svg{width:17px;height:17px;color:var(--label2);flex:none}
+.search input{flex:1;border:0;background:transparent;font:inherit;font-size:17px;color:var(--label);outline:none;min-width:0;height:100%;padding:0}
+.search input::placeholder{color:var(--label2)}
+.search input::-webkit-search-cancel-button{display:none}
+.clear{border:0;background:var(--label3);color:var(--card);width:18px;height:18px;border-radius:50%;display:grid;place-items:center;cursor:pointer;flex:none;padding:0}
+.clear svg{width:9px;height:9px}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);background:var(--fill);border-radius:9px;padding:2px;margin-top:12px}
+.seg button{border:0;background:transparent;height:30px;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;letter-spacing:-.005em;transition:background .2s}
+.seg button.on{background:var(--seg-on);font-weight:600;box-shadow:0 3px 8px rgba(0,0,0,.12),0 3px 1px rgba(0,0,0,.04)}
+.seg .n{color:var(--label2);font-weight:500;margin-left:3px;font-variant-numeric:tabular-nums}
+.col .seg{margin-top:0}
+
+.chips{display:flex;gap:8px;overflow-x:auto;margin:12px -16px 0;padding:0 16px 2px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:0;height:32px;padding:0 14px;border-radius:99px;background:var(--card);color:var(--label);font-size:14px;font-weight:500;cursor:pointer;box-shadow:0 0 0 .5px var(--sep) inset;letter-spacing:-.005em;transition:background .18s,color .18s}
+.chip.on{background:var(--label);color:var(--bg);box-shadow:none;font-weight:600}
+.pbrand{margin:0 0 2px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+/* Product rows */
+.prow{position:relative;display:flex;gap:12px;padding:12px 16px;background:var(--card)}
+.pinfo{flex:1;min-width:0}
+.pname{font-size:16px;font-weight:500;line-height:1.28;margin:0;letter-spacing:-.01em}
+.pmeta{font-size:13px;color:var(--label2);margin:2px 0 10px;font-variant-numeric:tabular-nums;letter-spacing:0;overflow-wrap:anywhere}
+.pbtns{display:flex;gap:8px;flex-wrap:wrap}
+.cap{display:inline-flex;align-items:center;gap:5px;height:30px;padding:0 13px;border-radius:99px;border:0;background:var(--accent-tint);color:var(--accent);font-size:14px;font-weight:600;cursor:pointer;transition:transform .12s,background .18s,color .18s;letter-spacing:-.005em}
+.cap.t{background:var(--violet-tint);color:var(--violet)}
+.cap.on{background:var(--accent);color:#fff}
+.cap.t.on{background:var(--violet);color:#fff}
+.cap:active{transform:scale(.94)}
+.cap svg{width:12px;height:12px}
+.emptyrow{padding:28px 20px;text-align:center;background:var(--card)}
+.emptyrow strong{display:block;font-size:17px;font-weight:600;margin-bottom:4px}
+.emptyrow span{font-size:15px;color:var(--label2)}
+
+/* Bottom bar + buttons */
+.bottom{position:sticky;bottom:0;z-index:15;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:var(--bar);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-top:.5px solid var(--sep);display:flex;flex-direction:column;gap:8px}
+.btn{width:100%;height:50px;border:0;border-radius:14px;font-size:17px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:transform .12s,opacity .15s;letter-spacing:-.01em}
+.btn.fill{background:var(--accent);color:#fff}
+.btn.tint{background:var(--accent-tint);color:var(--accent)}
+.btn:active:not(:disabled){transform:scale(.98);opacity:.86}
+.btn:disabled{background:var(--fill);color:var(--label3);cursor:not-allowed}
+.btn svg{width:17px;height:17px;flex:none}
+.btnrow{display:grid;grid-template-columns:1fr 1.6fr;gap:10px}
+.hint{font-size:13px;color:var(--label2);text-align:center;margin:0;letter-spacing:0}
+
+/* Cart bar */
+.cartbar{display:flex;align-items:center;gap:12px;width:100%;border:0;background:none;padding:2px 0;cursor:pointer;text-align:left}
+.cb-icon{width:44px;height:44px;border-radius:12px;background:var(--accent);color:#fff;display:grid;place-items:center;position:relative;flex:none;transition:background .2s}
+.cb-icon svg{width:21px;height:21px}
+.badge{position:absolute;top:-6px;right:-6px;min-width:21px;height:21px;border-radius:11px;background:var(--red);color:#fff;font-size:12px;font-weight:600;display:grid;place-items:center;padding:0 6px;border:2px solid var(--card);font-variant-numeric:tabular-nums;animation:bump .3s ease}
+.cb-txt{flex:1;min-width:0}
+.cb-txt strong{display:block;font-size:16px;font-weight:600}
+.cb-txt small{display:block;font-size:13px;color:var(--label2);margin-top:1px;letter-spacing:0}
+.cb-go{height:34px;padding:0 15px;border-radius:99px;background:var(--accent);color:#fff;font-size:15px;font-weight:600;display:inline-flex;align-items:center;gap:4px;flex:none}
+.cb-go svg{width:7px;height:12px}
+.cartbar:disabled{cursor:default}
+.cartbar:disabled .cb-icon{background:var(--fill2);color:var(--label2)}
+
+/* Cart rows */
+.rm{width:28px;height:28px;border-radius:50%;border:0;background:var(--fill);color:var(--label2);display:grid;place-items:center;cursor:pointer;flex:none;padding:0}
+.rm svg{width:11px;height:11px}
+.rm:active{background:var(--fill2)}
+.count{font-variant-numeric:tabular-nums}
+
+/* iOS switch */
+.switch{appearance:none;-webkit-appearance:none;width:51px;height:31px;border-radius:16px;background:var(--fill2);position:relative;flex:none;cursor:pointer;transition:background .25s;margin:0}
+.switch::after{content:"";position:absolute;top:2px;left:2px;width:27px;height:27px;border-radius:50%;background:#fff;box-shadow:0 3px 8px rgba(0,0,0,.15),0 1px 1px rgba(0,0,0,.16);transition:transform .25s cubic-bezier(.3,.7,.4,1)}
+.switch:checked{background:var(--green)}
+.switch:checked::after{transform:translateX(20px)}
+.switch:disabled{opacity:.45;cursor:not-allowed}
+.switchrow{cursor:pointer}
+
+/* Alert */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.32);display:grid;place-items:center;z-index:50;padding:24px;animation:fade .2s ease}
+.alert{width:100%;max-width:290px;background:var(--alert);-webkit-backdrop-filter:blur(30px);backdrop-filter:blur(30px);border-radius:16px;overflow:hidden;text-align:center;animation:alertin .28s cubic-bezier(.2,.9,.3,1.15)}
+.alert-body{padding:20px 16px 16px}
+.alert h2{font-size:17px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em}
+.alert p{font-size:13px;margin:0;line-height:1.38;letter-spacing:0}
+.acounts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0 10px}
+.acounts div{background:var(--card);border-radius:10px;padding:9px 6px}
+.acounts b{display:block;font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.acounts .s b{color:var(--accent)}
+.acounts .t b{color:var(--violet)}
+.acounts span{font-size:12px;color:var(--label2);letter-spacing:0}
+.ameta{color:var(--label2)}
+.aerr{margin-top:10px!important;color:var(--red)}
+.alert-btns{display:grid;grid-template-columns:1fr 1fr;border-top:.5px solid var(--sep)}
+.alert-btns button{height:46px;border:0;background:none;color:var(--accent);font-size:17px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.alert-btns button + button{border-left:.5px solid var(--sep);font-weight:600}
+.alert-btns button:active{background:var(--fill)}
+.alert-btns button:disabled{color:var(--label3);cursor:default}
+
+/* Success */
+.done{display:flex;flex-direction:column;align-items:center;text-align:center;padding:40px 24px 4px}
+.okc{width:86px;height:86px;border-radius:50%;background:var(--green);display:grid;place-items:center;animation:popin .5s cubic-bezier(.2,.9,.3,1.35)}
+.okc svg{width:42px;height:42px;color:#fff}
+.done h1{font-size:28px;font-weight:700;letter-spacing:-.025em;margin:20px 0 6px}
+.done p{color:var(--label2);font-size:15px;margin:0;max-width:300px;line-height:1.38}
+
+/* Misc */
+.center-box{display:flex;flex-direction:column;align-items:center;text-align:center;padding:60px 28px 10px;gap:12px}
+.center-box .big{width:64px;height:64px;border-radius:50%;background:var(--fill);color:var(--label2);display:grid;place-items:center}
+.center-box .big svg{width:30px;height:30px}
+.center-box h1{font-size:22px;font-weight:700;margin:4px 0 0;letter-spacing:-.02em}
+.center-box p{margin:0;color:var(--label2);font-size:15px;line-height:1.4}
+.spinner{width:26px;height:26px;border-radius:50%;border:2.5px solid var(--fill2);border-top-color:var(--label2);animation:spin .8s linear infinite}
+.spinner.sm{width:16px;height:16px;border-width:2px;border-color:var(--fill2);border-top-color:var(--accent)}
+
+/* Sign-in */
+.inrow{position:relative;display:flex;align-items:center;gap:12px;min-height:50px;padding:0 16px;background:var(--card)}
+.inrow + .inrow::before{content:"";position:absolute;top:0;left:16px;right:0;height:.5px;background:var(--sep)}
+.inrow label{width:104px;flex:none;font-size:17px}
+.inrow input{flex:1;border:0;background:transparent;font:inherit;font-size:17px;color:var(--label);outline:none;height:50px;min-width:0;padding:0;letter-spacing:-.01em}
+.inrow input::placeholder{color:var(--label3)}
+.err{display:flex;gap:8px;align-items:center;color:var(--red);font-size:14px;margin:10px 16px 0;letter-spacing:0}
+.err svg{width:16px;height:16px;flex:none}
+.accent{color:var(--accent)}
+.navlink{border:0;background:none;color:var(--accent);font-size:17px;padding:8px 10px;cursor:pointer}
+.hello{font-size:13px;color:var(--label2);text-align:center;margin:18px 16px 0}
+
+/* Admin dashboard */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 16px 0}
+.tile{background:var(--card);border-radius:14px;padding:12px 12px 13px}
+.tile b{display:block;font-size:26px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.1}
+.tile span{display:block;font-size:12px;color:var(--label2);margin-top:3px;letter-spacing:0}
+.tile.s b{color:var(--accent)} .tile.t b{color:var(--violet)}
+.meter{height:5px;border-radius:3px;background:var(--fill);overflow:hidden;margin-top:9px}
+.meter i{display:block;height:100%;background:var(--green);border-radius:3px}
+.pills{display:flex;gap:6px;flex:none}
+.pill{font-size:12px;font-weight:600;padding:3px 8px;border-radius:99px;font-variant-numeric:tabular-nums;letter-spacing:0}
+.pill.s{background:var(--accent-tint);color:var(--accent)} .pill.t{background:var(--violet-tint);color:var(--violet)}
+.reqitems{background:var(--card);padding:0 16px 12px 16px;margin:0;list-style:none}
+.reqitems li{display:flex;justify-content:space-between;gap:10px;font-size:14px;padding:5px 0;border-top:.5px solid var(--sep)}
+.reqitems li small{color:var(--label2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.chev.open{transform:rotate(90deg)}
+.chev{transition:transform .2s}
+.rank{width:22px;color:var(--label2);font-variant-numeric:tabular-nums;font-size:15px;flex:none}
+
+@keyframes fade{from{opacity:0}}
+@keyframes alertin{from{opacity:0;transform:scale(1.12)}}
+@keyframes popin{from{opacity:0;transform:scale(.5)}}
+@keyframes bump{50%{transform:scale(1.18)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+/* ============================================================
+   SETTINGS: the only part you normally change
+   ============================================================ */
+const CONFIG = {
+  // "demo" = try it with sample data. Nothing is sent anywhere.
+  // "live" = real requests are sent to your Power Automate flow.
+  MODE: "live",
+
+  // Live mode only: paste your Power Automate HTTP URL between the quotes.
+  FLOW_URL: "https://default67b71995c14248d18c2ed190dd9501.4a.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/29/workflows/efe703192ef44caa8a1149df3521699b/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=3pNdsR0at0KluCKrUresCKOGpLuXlGp4VQlqWv-MpOg",
+
+  WINDOW_START_DAY: 28,   // default only: in live mode the Settings tab in Excel decides
+  WINDOW_END_DAY: 5,
+  TIMEZONE: "Asia/Dubai",
+  MAX_RESULTS: 60         // how many products to show at once while searching
+};
+
+/* ============================================================
+   DEMO DATA (demo mode only; live mode reads your Excel file)
+   ============================================================ */
+const PRODUCT_ROWS = [
+  ["LP-1001","6291100010012","Velvet Matte Lipstick 01 Nude Petal","Rosa Belle"],
+  ["LP-1002","6291100010029","Velvet Matte Lipstick 02 Rose Dust","Rosa Belle"],
+  ["LP-1005","6291100010036","Velvet Matte Lipstick 05 Berry Kiss","Rosa Belle"],
+  ["LG-2001","6291100020011","Glass Shine Lip Gloss Clear","Rosa Belle"],
+  ["LG-2002","6291100020028","Glass Shine Lip Gloss Pink Pearl","Rosa Belle"],
+  ["FD-3110","6291100030010","Silk Skin Foundation 30ml Ivory 110","Velour Studio"],
+  ["FD-3220","6291100030027","Silk Skin Foundation 30ml Beige 220","Velour Studio"],
+  ["FD-3330","6291100030034","Silk Skin Foundation 30ml Honey 330","Velour Studio"],
+  ["CN-3101","6291100031017","Soft Focus Concealer Light","Velour Studio"],
+  ["CN-3102","6291100031024","Soft Focus Concealer Medium","Velour Studio"],
+  ["PR-3201","6291100032014","Hydra Glow Primer 30ml","Velour Studio"],
+  ["PW-3301","6291100033011","Airy Setting Powder Translucent","Velour Studio"],
+  ["BL-4001","6291100040019","Cheek Bloom Blush Peach","Velour Studio"],
+  ["BL-4002","6291100040026","Cheek Bloom Blush Mauve","Velour Studio"],
+  ["HL-4101","6291100041016","Moon Dew Highlighter Champagne","Velour Studio"],
+  ["BR-4201","6291100042013","Sculpt Bronzer Warm Sand","Velour Studio"],
+  ["MS-5001","6291100050018","Lash Lift Mascara Black","Aurelle"],
+  ["MS-5002","6291100050025","Lash Lift Mascara Waterproof","Aurelle"],
+  ["EL-5101","6291100051015","Precise Liquid Eyeliner Black","Aurelle"],
+  ["EP-5201","6291100052012","Nine Shade Eye Palette Rose Gold","Aurelle"],
+  ["EP-5202","6291100052029","Nine Shade Eye Palette Smoky Plum","Aurelle"],
+  ["BW-5301","6291100053019","Brow Define Pencil Soft Brown","Aurelle"],
+  ["SK-6001","6291100060017","Rose Water Facial Mist 100ml","Nuvi Skin"],
+  ["SK-6002","6291100060024","Vitamin C Glow Serum 30ml","Nuvi Skin"],
+  ["SK-6003","6291100060031","Daily Moisture Cream 50ml","Nuvi Skin"],
+  ["SK-6004","6291100060048","Gentle Micellar Water 200ml","Nuvi Skin"],
+  ["FR-7001","6291100070016","Oud Blossom Eau de Parfum 50ml","Oud Maison"],
+  ["FR-7002","6291100070023","Jasmine Musk Eau de Parfum 50ml","Oud Maison"],
+  ["NL-8001","6291100080015","Gel Finish Nail Colour Blush","Rosa Belle"],
+  ["TL-9001","6291100090014","Pro Blending Brush Set 5pc","Velour Studio"]
+];
+const DEMO_BAS = [
+  {mobile:"0501234567", pin:"1234", name:"Aisha Rahman", store:"Dubai Mall"},
+  {mobile:"0559876543", pin:"5678", name:"Fatima Noor",  store:"City Centre Ajman"},
+  {mobile:"0524567890", pin:"2468", name:"Priya Menon",  store:"Al Wahda Mall"},
+  {mobile:"0567771234", pin:"1357", name:"Mariam Saleh", store:"Mall of the Emirates"}
+];
+const DEMO_ADMIN = {user:"admin", password:"1234"};
+/* Pretend requests other BAs already sent this month, so the admin dashboard has something to show */
+const DEMO_SEED = [
+  {mobile:"0559876543", time:"29 Nov, 10:42", stock:["LP-1002","FD-3220","MS-5001","SK-6002"], tester:["LP-1002","EP-5201"]},
+  {mobile:"0567771234", time:"30 Nov, 16:15", stock:["FD-3220","LG-2002","HL-4101"], tester:["FR-7001"]}
+];
+
+/* ============================================================
+   APP CODE: no changes needed below this line
+   ============================================================ */
+let PRODUCTS = [];
+let BRANDS = [];
+function setProducts(rows){
+  PRODUCTS = rows.map(r => Array.isArray(r) ? {sku:r[0], barcode:r[1], name:r[2], brand:r[3]} : r)
+    .filter(p => p && p.sku && p.name)
+    .map(p => ({sku:String(p.sku).trim(), barcode:String(p.barcode || "").trim(), name:String(p.name).trim(), brand:String(p.brand || "").trim()}));
+  PRODUCTS.forEach(p => { p._hay = (p.name + " " + p.sku + " " + p.barcode + " " + p.brand).toLowerCase(); });
+  BRANDS = [...new Set(PRODUCTS.map(p => p.brand).filter(Boolean))].sort((a, b) => a.localeCompare(b));
+  try{ if (state.brand !== "all" && !BRANDS.includes(state.brand)) state.brand = "all"; }catch(e){ /* first load: state not created yet */ }
+}
+setProducts(PRODUCT_ROWS);
+
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const STEPS = {
+  details:  {n:1, nav:"Details"},
+  products: {n:2, nav:"Products"},
+  cart:     {n:3, nav:"Cart"},
+  review:   {n:4, nav:"Review"}
+};
+const BACK = {products:"details", cart:"products", review:"cart", adminLogin:"login"};
+
+const state = {
+  step:"loading", ba:null, cart:{stock:[], tester:[]},
+  query:"", filter:"all", brand:"all", confirmChecked:false,
+  modal:null, submitting:false, submitError:"", lastResult:null,
+  server:{windowOpen:null, alreadySubmitted:false}, blocked:null, demoWindow:"open",
+  login:{mobile:"", pin:"", error:"", busy:false},
+  adminForm:{user:"", password:"", error:"", busy:false},
+  admin:null, adminData:null, adminOpen:{}
+};
+
+/* ---------- storage (safe if the browser blocks it) ---------- */
+function tryStore(kind){ try{ const s = window[kind]; s.setItem("bareq.t","1"); s.removeItem("bareq.t"); return s; }catch(e){ return null; } }
+const LS = tryStore("localStorage"), SS = tryStore("sessionStorage");
+const mem = {};
+const store = {
+  get(k, fb, s = LS){ try{ const v = s ? s.getItem(k) : mem[k]; return v ? JSON.parse(v) : fb; }catch(e){ return fb; } },
+  set(k, v, s = LS){ const j = JSON.stringify(v); try{ s ? s.setItem(k, j) : (mem[k] = j); }catch(e){ mem[k] = j; } },
+  del(k, s = LS){ try{ s ? s.removeItem(k) : delete mem[k]; }catch(e){ delete mem[k]; } },
+  clearAll(){ try{ [LS, SS].forEach(s => s && Object.keys(s).filter(k => k.startsWith("bareq.")).forEach(k => s.removeItem(k))); }catch(e){} Object.keys(mem).forEach(k => delete mem[k]); }
+};
+
+/* ---------- dates in UAE time ---------- */
+function uaeNow(){
+  const now = new Date();
+  try{
+    const parts = new Intl.DateTimeFormat("en-GB",{timeZone:CONFIG.TIMEZONE,year:"numeric",month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).formatToParts(now);
+    const p = {}; parts.forEach(x => p[x.type] = x.value);
+    return {y:+p.year, m:+p.month, d:+p.day, time:p.hour + ":" + p.minute};
+  }catch(e){
+    return {y:now.getFullYear(), m:now.getMonth()+1, d:now.getDate(), time:String(now.getHours()).padStart(2,"0") + ":" + String(now.getMinutes()).padStart(2,"0")};
+  }
+}
+function todayText(){
+  try{ return new Intl.DateTimeFormat("en-GB",{timeZone:CONFIG.TIMEZONE,weekday:"short",day:"numeric",month:"short",year:"numeric"}).format(new Date()); }
+  catch(e){ const t = uaeNow(); return t.d + " " + MONTHS[t.m-1] + " " + t.y; }
+}
+/* The request month is the month the window closes in (28 Nov to 5 Dec = "Dec 2026"). */
+function cycleInfo(){
+  const t = uaeNow();
+  let y = t.y, m = t.m;
+  if (t.d > CONFIG.WINDOW_END_DAY){ m++; if (m > 12){ m = 1; y++; } }
+  let sm = m - 1; if (sm < 1) sm = 12;
+  const sv = state.server || {};
+  if (CONFIG.MODE === "live" && sv.windowText){
+    return {key: sv.cycleKey || (y + "-" + String(m).padStart(2,"0")), label: sv.cycle || (MONTHS[m-1] + " " + y),
+      windowText: sv.windowText, opensText: sv.opensText || sv.windowText, closesText: sv.closesText || sv.windowText, realOpen: !!sv.windowOpen};
+  }
+  return {
+    key: y + "-" + String(m).padStart(2,"0"),
+    label: MONTHS[m-1] + " " + y,
+    windowText: CONFIG.WINDOW_START_DAY + " " + MONTHS[sm-1] + " – " + CONFIG.WINDOW_END_DAY + " " + MONTHS[m-1],
+    opensText: CONFIG.WINDOW_START_DAY + " " + MONTHS[sm-1],
+    closesText: CONFIG.WINDOW_END_DAY + " " + MONTHS[m-1],
+    realOpen: t.d >= CONFIG.WINDOW_START_DAY || t.d <= CONFIG.WINDOW_END_DAY
+  };
+}
+function isWindowOpen(){
+  const ci = cycleInfo();
+  if (CONFIG.MODE === "demo") return state.demoWindow === "real" ? ci.realOpen : state.demoWindow === "open";
+  return state.server.windowOpen === null ? ci.realOpen : !!state.server.windowOpen;
+}
+function demoSubKey(mobile){ return "bareq.demo.sub." + mobile + "." + cycleInfo().key; }
+function alreadySubmitted(){
+  if (!state.ba) return false;
+  if (CONFIG.MODE === "demo") return !!store.get(demoSubKey(state.ba.mobile), null);
+  return !!state.server.alreadySubmitted;
+}
+
+/* ---------- cart ---------- */
+function cartKey(){ return "bareq.cart." + state.ba.mobile; }
+function loadCart(){
+  const c = store.get(cartKey(), null);
+  state.cart = (c && Array.isArray(c.stock) && Array.isArray(c.tester)) ? c : {stock:[], tester:[]};
+}
+function saveCart(){ store.set(cartKey(), state.cart); }
+function inCart(type, sku){ return state.cart[type].some(i => i.sku === sku); }
+function cartTotal(){ return state.cart.stock.length + state.cart.tester.length; }
+function toggleItem(type, sku){
+  if (inCart(type, sku)){ removeItem(type, sku); return; }
+  const p = PRODUCTS.find(x => x.sku === sku);
+  if (!p) return;
+  state.cart[type].push({sku:p.sku, barcode:p.barcode, name:p.name, brand:p.brand});
+  saveCart();
+}
+function removeItem(type, sku){ state.cart[type] = state.cart[type].filter(i => i.sku !== sku); saveCart(); }
+
+/* ---------- talking to Power Automate (live mode) ---------- */
+async function postFlow(body){
+  if (!CONFIG.FLOW_URL) throw Object.assign(new Error("No flow URL"), {code:"NO_URL"});
+  let res;
+  try{ res = await fetch(CONFIG.FLOW_URL, {method:"POST", headers:{"Content-Type":"text/plain;charset=UTF-8"}, body:JSON.stringify(body)}); }
+  catch(e){ throw Object.assign(new Error("Network"), {code:"NETWORK"}); }
+  let data = null;
+  try{ data = await res.json(); }catch(e){}
+  if (!data) throw Object.assign(new Error("Bad response"), {code:"NETWORK"});
+  return data;
+}
+function applyServer(r){
+  state.server = {windowOpen:r.windowOpen, alreadySubmitted:!!r.alreadySubmitted,
+    windowText:r.windowText || "", opensText:r.opensText || "", closesText:r.closesText || "", cycle:r.cycle || "", cycleKey:r.cycleKey || ""};
+  if (Array.isArray(r.products) && r.products.length) setProducts(r.products);
+  if (r.startDay) CONFIG.WINDOW_START_DAY = +r.startDay;
+  if (r.endDay) CONFIG.WINDOW_END_DAY = +r.endDay;
+}
+
+/* ---------- helpers ---------- */
+function esc(s){ return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function initials(name){
+  const w = String(name).replace(/[^A-Za-z0-9 ]/g," ").split(/\s+/).filter(Boolean);
+  return ((w[0]||"?")[0] + ((w[1]||"")[0]||"")).toUpperCase();
+}
+function plural(n, word){ return n + " " + word + (n === 1 ? "" : "s"); }
+function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
+/* Accepts 050 123 4567, +971 50 123 4567, 00971501234567 and returns 0501234567 */
+function normMobile(s){
+  let d = String(s || "").replace(/\D/g, "");
+  if (d.startsWith("00")) d = d.slice(2);
+  if (d.startsWith("971")) d = "0" + d.slice(3);
+  if (d.length === 9 && d.startsWith("5")) d = "0" + d;
+  return d;
+}
+function maskMobile(m){ return m.length >= 7 ? m.slice(0,3) + " ••• " + m.slice(-4) : m; }
+
+/* ---------- icons ---------- */
+const I = {
+  brand:'<svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><rect x="8.4" y="13.2" width="7.2" height="8" rx="1.6"/><rect x="9.2" y="10.2" width="5.6" height="3.4" rx=".6" opacity=".82"/><path d="M9.8 10.2V6.3L14.2 3.6V10.2Z" opacity=".95"/></svg>',
+  chevL:'<svg viewBox="0 0 11 19" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 1.5 2 9.5l7.5 8"/></svg>',
+  chevR:'<svg class="chev" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1.5 1.5 5 5.5-5 5.5"/></svg>',
+  chevRw:'<svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m1.5 1.5 5 5.5-5 5.5"/></svg>',
+  search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.6-4.6"/></svg>',
+  bag:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 12.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>',
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>',
+  plus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>',
+  x:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+  alert:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.5h.01"/></svg>',
+  wifi:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 8.5a15 15 0 0 1 20 0M5 12a10 10 0 0 1 14 0M8.5 15.5a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1" fill="currentColor"/></svg>'
+};
+
+/* ---------- building blocks ---------- */
+const group = (header, inner, footer, cls) =>
+  `<section class="group ${cls||""}">${header ? `<h2 class="gh">${header}</h2>` : ""}<div class="list">${inner}</div>${footer ? `<p class="gf">${footer}</p>` : ""}</section>`;
+const row = (label, value) => `<div class="row"><span class="rl">${label}</span><span class="rv">${value}</span></div>`;
+const title = (t, sub, brand) =>
+  `<header class="lt">${brand ? `<div class="brandrow"><span class="appicon">${I.brand}</span><span class="bname">Forever Makeup<span class="bsub">BA Stock &amp; Tester Request</span></span></div>` : ""}<h1>${t}</h1>${sub ? `<p class="sub">${sub}</p>` : ""}</header>`;
+const errLine = msg => msg ? `<p class="err" role="alert">${I.alert}<span>${esc(msg)}</span></p>` : "";
+const gh = (label, n) => `<span>${label}</span><span class="count">${n}</span>`;
+
+function nav(){
+  const s = STEPS[state.step];
+  const back = BACK[state.step];
+  const backLabel = back === "login" ? "Sign In" : back ? STEPS[back].nav : "";
+  const backBtn = back ? `<button type="button" class="navbtn" data-action="go" data-step="${back}">${I.chevL}<span>${backLabel}</span></button>` : "";
+  let center = s ? `Step ${s.n} of 4` : "";
+  if (state.step === "admin") center = "Admin";
+  let right = CONFIG.MODE === "demo" ? `<span class="demo-pill">Demo</span>` : "";
+  if (state.step === "admin") right = `<button type="button" class="navlink" data-action="admin-signout">Sign Out</button>`;
+  const prog = s ? `<div class="prog" aria-hidden="true"><span style="width:${s.n * 25}%"></span></div>` : "";
+  return `<nav class="nav"><div class="nav-in"><div class="nl">${backBtn}</div><div class="nc">${center}</div><div class="nr">${right}</div></div>${prog}</nav>`;
+}
+
+function statusInfo(){
+  const ci = cycleInfo();
+  if (alreadySubmitted()) return {dot:"done", label:"Request sent", value:ci.label, foot:"Your request for this month is in. You can start your next cart any time."};
+  if (isWindowOpen()) return {dot:"ok", label:"Submissions open", value:"Until " + ci.closesText, foot:"Send your " + ci.label + " request before " + ci.closesText + " ends."};
+  return {dot:"warn", label:"Submissions closed", value:"Opens " + ci.opensText, foot:"The next window is " + ci.windowText + ". You can fill your cart now and send it then."};
+}
+
+function demoControls(){
+  if (CONFIG.MODE !== "demo") return "";
+  const b = v => `<button type="button" data-action="demo-window" data-val="${v}" class="${state.demoWindow===v?"on":""}" aria-pressed="${state.demoWindow===v}">${{open:"Open",closed:"Closed",real:"Real date"}[v]}</button>`;
+  return group("Demo controls",
+    `<div class="row col"><span class="rl">Submit window</span><div class="seg">${b("open")}${b("closed")}${b("real")}</div></div>
+     <button type="button" class="row tap danger" data-action="demo-reset">Reset Demo</button>`,
+    "These controls only appear in the demo. Switch the window to see how the app behaves outside the request period.");
+}
+
+/* ---------- BA sign in ---------- */
+function screenLogin(){
+  const L = state.login;
+  const demo = CONFIG.MODE === "demo" ? group("Demo sign-ins",
+    DEMO_BAS.map(b => `<button type="button" class="row ic tap" data-action="demo-fill" data-mobile="${b.mobile}">
+        <span class="av round">${esc(initials(b.name))}</span>
+        <span class="rl"><span class="two"><strong>${esc(b.name)}</strong><small>${esc(b.mobile)} · PIN ${esc(b.pin)}</small></span></span>${I.chevR}</button>`).join(""),
+    "Tap a demo BA to fill in their mobile number and PIN. In the real app, you set each BA's PIN in Excel.") : "";
+  return {
+    body: title("Sign In", "Use the mobile number and PIN your manager gave you.", true) +
+      `<form id="loginForm" novalidate>` +
+      group("", `<div class="inrow"><label for="mobile">Mobile</label><input id="mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" placeholder="05X XXX XXXX" value="${esc(L.mobile)}"></div>
+        <div class="inrow"><label for="pin">PIN</label><input id="pin" name="pin" type="password" inputmode="numeric" autocomplete="current-password" pattern="[0-9]*" maxlength="6" placeholder="4-digit PIN" value="${esc(L.pin)}"></div>`) +
+      errLine(L.error) +
+      `<p class="gf" style="margin:8px 32px 0">Forgot your PIN? Ask your manager to check it in the BA list.</p></form>` +
+      group("", `<button type="button" class="row tap" data-action="go" data-step="adminLogin"><span class="rl">Admin Sign In</span>${I.chevR}</button>`) +
+      demo,
+    bar: `<button type="button" class="btn fill" data-action="login" ${L.busy?"disabled":""}>${L.busy ? `<span class="spinner sm" aria-hidden="true"></span> Signing In` : "Sign In"}</button>`
+  };
+}
+
+async function doLogin(){
+  const L = state.login;
+  const mf = document.getElementById("mobile"), pf = document.getElementById("pin");
+  if (mf) L.mobile = mf.value; if (pf) L.pin = pf.value;
+  const mobile = normMobile(L.mobile), pin = String(L.pin).trim();
+  if (mobile.length < 9){ L.error = "Enter your mobile number, for example 050 123 4567."; render(); return; }
+  if (!/^\d{4,6}$/.test(pin)){ L.error = "Enter your PIN (4 digits)."; render(); return; }
+  L.error = ""; L.busy = true; render();
+  try{
+    let ba, srv = null;
+    if (CONFIG.MODE === "demo"){
+      await sleep(500);
+      const b = DEMO_BAS.find(x => x.mobile === mobile && x.pin === pin);
+      if (!b) throw Object.assign(new Error(), {code:"INVALID_LOGIN"});
+      ba = {mobile, pin, name:b.name, store:b.store};
+    } else {
+      const r = await postFlow({action:"login", mobile, pin});
+      if (!r.ok) throw Object.assign(new Error(), {code:r.error || "INVALID_LOGIN"});
+      applyServer(r);
+      srv = r;
+      ba = {mobile, pin, name:r.baName, store:r.store};
+    }
+    store.set("bareq.session", srv ? {...ba, at:Date.now(), server:srv} : ba);
+    Object.assign(L, {mobile:"", pin:"", busy:false});
+    selectBa(ba);
+  }catch(e){
+    L.busy = false;
+    L.error = {
+      INVALID_LOGIN:"Mobile number or PIN is not correct. Please try again.",
+      INACTIVE:"Your account is not active. Please contact your manager.",
+      NO_URL:"The app is not connected to Power Automate yet.",
+      NETWORK:"Can't connect. Check your internet and try again."
+    }[e.code] || "Sign in failed. Please try again.";
+    render();
+  }
+}
+
+function signOut(){
+  store.del("bareq.session");
+  state.server = {windowOpen:null, alreadySubmitted:false};
+  state.ba = null; state.cart = {stock:[], tester:[]}; state.query = ""; state.filter = "all"; state.confirmChecked = false;
+  state.login.error = "";
+  go("login");
+}
+
+/* ---------- admin ---------- */
+function screenAdminLogin(){
+  const A = state.adminForm;
+  return {
+    body: title("Admin Sign In", "For managers. See every request for the month in one place.", true) +
+      `<form id="adminForm" novalidate>` +
+      group("", `<div class="inrow"><label for="auser">User ID</label><input id="auser" type="text" autocomplete="username" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Admin user ID" value="${esc(A.user)}"></div>
+        <div class="inrow"><label for="apass">Password</label><input id="apass" type="password" autocomplete="current-password" placeholder="Required" value="${esc(A.password)}"></div>`,
+        CONFIG.MODE === "demo" ? "Demo: user ID <b>admin</b>, password <b>1234</b>. In the real app, you set these in the Settings tab in Excel." : "Set in the Settings tab of your Excel file.") +
+      errLine(A.error) + `</form>`,
+    bar: `<button type="button" class="btn fill" data-action="admin-login" ${A.busy?"disabled":""}>${A.busy ? `<span class="spinner sm" aria-hidden="true"></span> Signing In` : "Sign In"}</button>`
+  };
+}
+
+function demoAdminData(){
+  const ci = cycleInfo();
+  const find = sku => PRODUCTS.find(p => p.sku === sku) || {sku, barcode:"", name:sku};
+  const requests = [];
+  const add = (ba, reqId, time, stock, tester) => {
+    stock.forEach(p => requests.push({requestId:reqId, submittedAt:time, mobile:ba.mobile, baName:ba.name, store:ba.store, type:"Stock", sku:p.sku, barcode:p.barcode, name:p.name, brand:p.brand || ""}));
+    tester.forEach(p => requests.push({requestId:reqId, submittedAt:time, mobile:ba.mobile, baName:ba.name, store:ba.store, type:"Tester", sku:p.sku, barcode:p.barcode, name:p.name, brand:p.brand || ""}));
+  };
+  DEMO_SEED.forEach((s, i) => {
+    const ba = DEMO_BAS.find(b => b.mobile === s.mobile);
+    add(ba, "DEMO-" + (i+1), s.time, s.stock.map(find), s.tester.map(find));
+  });
+  DEMO_BAS.forEach(ba => {
+    const sub = store.get(demoSubKey(ba.mobile), null);
+    if (sub && sub.items) add(ba, sub.requestId, sub.submittedAt, sub.items.filter(i => i.type === "Stock"), sub.items.filter(i => i.type === "Tester"));
+  });
+  return {cycle:ci.label, bas:DEMO_BAS.map(b => ({mobile:b.mobile, name:b.name, store:b.store})), requests};
+}
+
+async function loadAdmin(user, password){
+  if (CONFIG.MODE === "demo"){
+    await sleep(500);
+    if (user.toLowerCase() !== DEMO_ADMIN.user || password !== DEMO_ADMIN.password) throw Object.assign(new Error(), {code:"INVALID_ADMIN"});
+    return demoAdminData();
+  }
+  const r = await postFlow({action:"admin", user, password});
+  if (!r.ok) throw Object.assign(new Error(), {code:r.error || "INVALID_ADMIN"});
+  if (r.windowText !== undefined || r.windowOpen !== undefined) applyServer(r);
+  return {cycle:r.cycle || cycleInfo().label, bas:r.bas || [], requests:r.requests || []};
+}
+
+async function doAdminLogin(){
+  const A = state.adminForm;
+  const uf = document.getElementById("auser"), pf = document.getElementById("apass");
+  if (uf) A.user = uf.value; if (pf) A.password = pf.value;
+  if (!A.user.trim() || !A.password){ A.error = "Enter your user ID and password."; render(); return; }
+  A.error = ""; A.busy = true; render();
+  try{
+    state.adminData = await loadAdmin(A.user.trim(), A.password);
+    state.admin = {user:A.user.trim(), password:A.password};
+    store.set("bareq.admin", state.admin, SS);
+    Object.assign(A, {user:"", password:"", busy:false});
+    state.adminOpen = {};
+    go("admin");
+  }catch(e){
+    A.busy = false;
+    A.error = {INVALID_ADMIN:"User ID or password is not correct.", NO_URL:"The app is not connected to Power Automate yet.", NETWORK:"Can't connect. Check your internet and try again."}[e.code] || "Sign in failed. Please try again.";
+    render();
+  }
+}
+
+async function refreshAdmin(){
+  if (!state.admin) return;
+  state.adminLoading = true; render();
+  try{ state.adminData = await loadAdmin(state.admin.user, state.admin.password); }
+  catch(e){ if (e.code === "INVALID_ADMIN"){ adminSignOut(); return; } }
+  state.adminLoading = false; render();
+}
+function adminSignOut(){ store.del("bareq.admin", SS); state.admin = null; state.adminData = null; go("login"); }
+
+function screenAdmin(){
+  const D = state.adminData || {bas:[], requests:[], cycle:""};
+  const byReq = new Map();
+  D.requests.forEach(r => {
+    if (!byReq.has(r.requestId)) byReq.set(r.requestId, {id:r.requestId, at:r.submittedAt, mobile:r.mobile, name:r.baName, store:r.store, stock:[], tester:[]});
+    byReq.get(r.requestId)[r.type === "Tester" ? "tester" : "stock"].push(r);
+  });
+  const reqs = [...byReq.values()];
+  const sentMobiles = new Set(reqs.map(r => r.mobile));
+  const waiting = D.bas.filter(b => !sentMobiles.has(b.mobile));
+  const stockN = D.requests.filter(r => r.type !== "Tester").length, testerN = D.requests.length - stockN;
+  const pct = D.bas.length ? Math.round(sentMobiles.size / D.bas.length * 100) : 0;
+
+  const counts = new Map();
+  D.requests.forEach(r => {
+    const c = counts.get(r.sku) || {name:r.name, sku:r.sku, brand:r.brand || "", s:0, t:0};
+    r.type === "Tester" ? c.t++ : c.s++;
+    counts.set(r.sku, c);
+  });
+  const brandCounts = new Map();
+  D.requests.forEach(r => {
+    const k = r.brand || "No brand";
+    const c = brandCounts.get(k) || {brand:k, s:0, t:0};
+    r.type === "Tester" ? c.t++ : c.s++;
+    brandCounts.set(k, c);
+  });
+  const byBrand = [...brandCounts.values()].sort((a, b) => (b.s + b.t) - (a.s + a.t) || a.brand.localeCompare(b.brand));
+  const top = [...counts.values()].sort((a, b) => (b.s + b.t) - (a.s + a.t) || a.name.localeCompare(b.name)).slice(0, 5);
+
+  const st = (() => {
+    const ci = cycleInfo();
+    if (isWindowOpen()) return `<div class="row"><span class="rl"><span class="dot ok"></span>Submissions open</span><span class="rv">Until ${esc(ci.closesText)}</span></div>`;
+    return `<div class="row"><span class="rl"><span class="dot warn"></span>Submissions closed</span><span class="rv">Opens ${esc(ci.opensText)}</span></div>`;
+  })();
+
+  const reqRows = reqs.length ? reqs.map(r => {
+    const open = !!state.adminOpen[r.id];
+    return `<button type="button" class="row tap" data-action="admin-toggle" data-id="${esc(r.id)}" aria-expanded="${open}">
+        <span class="rl"><span class="two"><strong>${esc(r.store)}</strong><small>${esc(r.name)} · ${esc(r.at)}</small></span></span>
+        <span class="pills"><span class="pill s">${r.stock.length} S</span><span class="pill t">${r.tester.length} T</span></span>
+        ${I.chevR.replace('class="chev"', `class="chev ${open?"open":""}"`)}
+      </button>
+      ${open ? `<ul class="reqitems">${[...r.stock.map(i => ["Stock", i]), ...r.tester.map(i => ["Tester", i])].map(([t, i]) =>
+        `<li><span>${esc(i.name)}${i.brand ? `<small style="display:block">${esc(i.brand)}</small>` : ""}</span><small>${t} · ${esc(i.sku)}</small></li>`).join("")}</ul>` : ""}`;
+  }).join("") : `<div class="row"><span class="rl muted">No requests yet this month</span></div>`;
+
+  return {
+    body: title("Dashboard", esc(D.cycle) + " requests") +
+      `<div class="tiles">
+        <div class="tile"><b>${sentMobiles.size}<span style="display:inline;font-size:15px;color:var(--label2);font-weight:500"> / ${D.bas.length}</span></b><span>BAs submitted</span><div class="meter"><i style="width:${pct}%"></i></div></div>
+        <div class="tile s"><b>${stockN}</b><span>Stock items</span></div>
+        <div class="tile t"><b>${testerN}</b><span>Tester items</span></div>
+      </div>` +
+      group("", st) +
+      group(gh("Waiting for", waiting.length),
+        waiting.length ? waiting.map(b => `<div class="row ic"><span class="av round">${esc(initials(b.name))}</span><span class="rl"><span class="two"><strong>${esc(b.name)}</strong><small>${esc(b.store)} · ${esc(b.mobile)}</small></span></span></div>`).join("")
+          : `<div class="row"><span class="rl"><span class="dot ok"></span>Everyone has submitted</span></div>`,
+        waiting.length ? "BAs who haven't sent a request for this month yet." : "") +
+      group(gh("Received", reqs.length), reqRows, reqs.length ? "Tap a store to see its products. S = Stock, T = Tester." : "") +
+      (top.length ? group("Most requested", top.map((p, i) => `<div class="row"><span class="rank">${i+1}</span><span class="rl"><span class="two"><strong>${esc(p.name)}</strong><small>${p.brand ? esc(p.brand) + " · " : ""}${esc(p.sku)}</small></span></span><span class="pills">${p.s?`<span class="pill s">${p.s} S</span>`:""}${p.t?`<span class="pill t">${p.t} T</span>`:""}</span></div>`).join("")) : "") +
+      (byBrand.length && !(byBrand.length === 1 && byBrand[0].brand === "No brand") ? group("By brand", byBrand.map(b => `<div class="row"><span class="rl">${esc(b.brand)}</span><span class="pills">${b.s?`<span class="pill s">${b.s} S</span>`:""}${b.t?`<span class="pill t">${b.t} T</span>`:""}</span></div>`).join("")) : "") +
+      `<p class="hello">Full details are in the Requests tab of your Excel file.</p>`,
+    bar: `<button type="button" class="btn tint" data-action="admin-refresh" ${state.adminLoading?"disabled":""}>${state.adminLoading ? `<span class="spinner sm" aria-hidden="true"></span> Refreshing` : "Refresh"}</button>`
+  };
+}
+
+/* ---------- BA screens ---------- */
+function screenDetails(){
+  const first = state.ba.name.split(" ")[0];
+  const n = cartTotal();
+  const st = statusInfo();
+  return {
+    body: title("Hello, " + esc(first), "Your request details are filled in for you.", true) +
+      group("Your details",
+        row("BA Name", esc(state.ba.name)) + row("Store / Location", esc(state.ba.store)) + row("Request Date", esc(todayText())),
+        "The date is set automatically.") +
+      group("Status", `<div class="row"><span class="rl"><span class="dot ${st.dot}"></span>${st.label}</span><span class="rv">${esc(st.value)}</span></div>`, st.foot) +
+      (n ? group("", `<button type="button" class="row tap" data-action="go" data-step="cart"><span class="rl">Saved Cart</span><span class="rv">${plural(n,"item")}</span>${I.chevR}</button>`) : "") +
+      group("Account", row("Signed in as", esc(maskMobile(state.ba.mobile))) +
+        `<button type="button" class="row tap danger" data-action="signout">Sign Out</button>`) +
+      demoControls(),
+    bar: `<button type="button" class="btn fill" data-action="go" data-step="products">Continue</button>`
+  };
+}
+
+function screenProducts(){
+  const seg = (f, label, count) => `<button type="button" role="tab" data-action="filter" data-filter="${f}" class="${state.filter===f?"on":""}" aria-selected="${state.filter===f}">${label}${count !== null ? `<span class="n" data-count="${f}">${count}</span>` : ""}</button>`;
+  return {
+    body: title("Select Products", "Tap Stock or Tester to add a product to your cart.") +
+      `<div class="tools">
+        <label for="q" class="sr">Search products</label>
+        <div class="search">${I.search}<input id="q" type="search" placeholder="Search by SKU, Barcode or Name" value="${esc(state.query)}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="search">
+          <button type="button" class="clear" data-action="clear-search" aria-label="Clear search" ${state.query?"":"hidden"}>${I.x}</button></div>
+        <div class="seg" role="tablist" aria-label="Show">${seg("all","All",null)}${seg("stock","Stock",state.cart.stock.length)}${seg("tester","Tester",state.cart.tester.length)}</div>
+        ${BRANDS.length > 1 ? `<div class="chips" role="group" aria-label="Brand">${["all", ...BRANDS].map(b => `<button type="button" class="chip ${state.brand===b?"on":""}" data-action="brand" data-brand="${esc(b)}" aria-pressed="${state.brand===b}">${b === "all" ? "All Brands" : esc(b)}</button>`).join("")}</div>` : ""}
+      </div>
+      <section class="group"><div class="list" id="plist" aria-live="polite"></div><p class="gf" id="pnote"></p></section>`,
+    bar: `<div id="cartbar"></div>`
+  };
+}
+
+function productRow(p){
+  const s = inCart("stock", p.sku), t = inCart("tester", p.sku);
+  return `<div class="prow">
+    <span class="av" aria-hidden="true">${esc(initials(p.name))}</span>
+    <div class="pinfo">
+      ${p.brand ? `<p class="pbrand">${esc(p.brand)}</p>` : ""}<p class="pname">${esc(p.name)}</p>
+      <p class="pmeta">${esc(p.sku)} · ${esc(p.barcode)}</p>
+      <div class="pbtns">
+        <button type="button" class="cap ${s?"on":""}" data-action="toggle" data-type="stock" data-sku="${esc(p.sku)}" aria-pressed="${s}">${s ? I.check : I.plus}Stock</button>
+        <button type="button" class="cap t ${t?"on":""}" data-action="toggle" data-type="tester" data-sku="${esc(p.sku)}" aria-pressed="${t}">${t ? I.check : I.plus}Tester</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderProductList(){
+  const box = document.getElementById("plist"), note = document.getElementById("pnote");
+  if (!box) return;
+  const words = state.query.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  let list = PRODUCTS;
+  if (state.filter !== "all"){
+    const skus = new Set(state.cart[state.filter].map(i => i.sku));
+    list = PRODUCTS.filter(p => skus.has(p.sku));
+  }
+  if (state.brand !== "all") list = list.filter(p => p.brand === state.brand);
+  if (words.length) list = list.filter(p => words.every(w => p._hay.includes(w)));
+  const shown = list.slice(0, CONFIG.MAX_RESULTS);
+  if (!shown.length){
+    box.innerHTML = state.filter !== "all" && !words.length && state.brand === "all"
+      ? `<div class="emptyrow"><strong>No ${state.filter} products yet</strong><span>Switch to All and tap ${state.filter === "stock" ? "Stock" : "Tester"} on a product.</span></div>`
+      : `<div class="emptyrow"><strong>No Results</strong><span>${state.query.trim() ? `Nothing matches "${esc(state.query.trim())}"${state.brand !== "all" ? " in " + esc(state.brand) : ""}. Try the SKU or barcode.` : "No products in this view."}</span></div>`;
+    note.textContent = "";
+  } else {
+    box.innerHTML = shown.map(productRow).join("");
+    note.textContent = list.length > shown.length
+      ? "Showing " + shown.length + " of " + list.length + ". Type more to narrow the list."
+      : plural(list.length, "product");
+  }
+  const clr = document.querySelector(".clear");
+  if (clr) clr.hidden = !state.query;
+}
+
+function renderCartBar(){
+  const el = document.getElementById("cartbar");
+  if (!el) return;
+  const s = state.cart.stock.length, t = state.cart.tester.length, n = s + t;
+  el.innerHTML = `<button type="button" class="cartbar" data-action="go" data-step="cart" ${n?"":"disabled"} aria-label="${n ? "View cart, " + n + " items" : "Cart is empty"}">
+    <span class="cb-icon">${I.bag}${n ? `<span class="badge">${n}</span>` : ""}</span>
+    <span class="cb-txt">${n ? `<strong>${s} Stock · ${t} Tester</strong><small>Saved on this phone</small>` : `<strong>Cart is empty</strong><small>Add products to continue</small>`}</span>
+    ${n ? `<span class="cb-go">View Cart ${I.chevRw}</span>` : ""}
+  </button>`;
+  document.querySelectorAll("[data-count]").forEach(c => c.textContent = state.cart[c.dataset.count].length);
+}
+
+function itemRows(type, removable){
+  const items = state.cart[type];
+  if (!items.length) return `<div class="row"><span class="rl muted">No ${type} products added</span></div>`;
+  return items.map(i => `<div class="row"><span class="rl"><span class="two"><strong>${esc(i.name)}</strong><small>${i.brand ? esc(i.brand) + " · " : ""}${esc(i.sku)} · ${esc(i.barcode)}</small></span></span>${removable ? `<button type="button" class="rm" data-action="remove" data-type="${type}" data-sku="${esc(i.sku)}" aria-label="Remove ${esc(i.name)}">${I.x}</button>` : ""}</div>`).join("");
+}
+
+function screenCart(){
+  const n = cartTotal();
+  return {
+    body: title("Your Cart", "Your Stock and Tester requests are kept separate.") +
+      group(gh("Stock Request", state.cart.stock.length), itemRows("stock", true)) +
+      group(gh("Tester Request", state.cart.tester.length), itemRows("tester", true), "Saved on this phone. You can close the app and finish later."),
+    bar: `<div class="btnrow"><button type="button" class="btn tint" data-action="go" data-step="products">Add More</button>
+      <button type="button" class="btn fill" data-action="go" data-step="review" ${n?"":"disabled"}>Next: Review</button></div>`
+  };
+}
+
+function screenReview(){
+  const ci = cycleInfo();
+  const open = isWindowOpen(), done = alreadySubmitted(), n = cartTotal();
+  const canSubmit = n > 0 && open && !done && state.confirmChecked;
+  let notice = "";
+  if (done) notice = group("", `<div class="row"><span class="rl"><span class="dot done"></span>Already sent for ${esc(ci.label)}</span></div>`, "Only one request is allowed per month.");
+  else if (!open) notice = group("", `<div class="row"><span class="rl"><span class="dot warn"></span>Submissions closed</span><span class="rv">Opens ${esc(ci.opensText)}</span></div>` +
+      (CONFIG.MODE === "live" ? `<button type="button" class="row tap" data-action="recheck" ${state.rechecking?"disabled":""}><span class="rl accent">${state.rechecking ? "Checking…" : "Check Again"}</span></button>` : ""),
+      "Your cart stays saved on this phone until the window opens.");
+  return {
+    body: title("Review & Verify", "Check everything before you submit.") +
+      group("Request details",
+        row("BA Name", esc(state.ba.name)) + row("Store / Location", esc(state.ba.store)) + row("Date", esc(todayText())) + row("Request Month", esc(ci.label))) +
+      group(gh("Stock Products", state.cart.stock.length), itemRows("stock", false)) +
+      group(gh("Tester Products", state.cart.tester.length), itemRows("tester", false)) +
+      notice +
+      group("", `<label class="row switchrow" for="confirm"><span class="rl">I confirm the above details are correct</span><input type="checkbox" role="switch" class="switch" id="confirm" ${state.confirmChecked?"checked":""} ${done||!open?"disabled":""}></label>`),
+    bar: `<button type="button" class="btn fill" data-action="open-confirm" ${canSubmit?"":"disabled"}>Submit Request</button>
+      ${!done && open && !state.confirmChecked ? `<p class="hint">Turn on the confirmation to submit.</p>` : ""}`
+  };
+}
+
+function screenSuccess(){
+  const r = state.lastResult || {};
+  return {
+    body: `<div class="done"><div class="okc">${I.check}</div><h1>Request Submitted</h1>
+        <p>${CONFIG.MODE === "demo" ? "Demo only: nothing was sent. In the live app, this request goes into your Excel sheet." : "Your request has been sent to the office."}</p></div>` +
+      group("Summary",
+        row("Submitted", esc(r.submittedAt || "")) + row("BA Name", esc(state.ba.name)) + row("Store / Location", esc(state.ba.store)) +
+        row("Request Month", esc(r.cycle || "")) + row("Stock Products", r.stockCount ?? 0) + row("Tester Products", r.testerCount ?? 0) +
+        row("Request ID", esc(r.requestId || ""))),
+    bar: `<button type="button" class="btn fill" data-action="go" data-step="details">Done</button>`
+  };
+}
+
+function screenBlocked(){
+  const m = {
+    nourl:   [I.wifi, "Not Connected Yet", "The Power Automate address has not been added to the app settings."],
+    network: [I.wifi, "Can't Connect", "Check your internet connection and try again."]
+  }[state.blocked] || [I.wifi, "Something Went Wrong", "Please try again."];
+  return {
+    body: `<div class="center-box"><div class="big">${m[0]}</div><h1>${m[1]}</h1><p>${m[2]}</p></div>`,
+    bar: state.blocked === "network" ? `<button type="button" class="btn fill" data-action="retry">Try Again</button>` : ""
+  };
+}
+
+function screenLoading(){
+  return {body:`<div class="center-box"><div class="spinner" aria-hidden="true"></div><p>Loading your details…<br>This can take a few seconds.</p></div>`, bar:""};
+}
+
+function alertBox(){
+  if (state.modal !== "confirm") return "";
+  const s = state.cart.stock.length, t = state.cart.tester.length;
+  return `<div class="overlay" data-action="overlay"><div class="alert" role="alertdialog" aria-modal="true" aria-labelledby="at" aria-describedby="ad">
+    <div class="alert-body">
+      <h2 id="at">Submit Request?</h2>
+      <p id="ad">Are you sure you want to submit this product request?</p>
+      <div class="acounts"><div class="s"><b>${s}</b><span>Stock</span></div><div class="t"><b>${t}</b><span>Tester</span></div></div>
+      <p class="ameta">${esc(state.ba.store)} · ${esc(cycleInfo().label)}</p>
+      ${state.submitError ? `<p class="aerr">${esc(state.submitError)}</p>` : ""}
+    </div>
+    <div class="alert-btns">
+      <button type="button" data-action="cancel-confirm" ${state.submitting?"disabled":""}>Cancel</button>
+      <button type="button" data-action="submit" ${state.submitting?"disabled":""}>${state.submitting ? `<span class="spinner sm" aria-hidden="true"></span>Sending` : "Yes, Submit"}</button>
+    </div>
+  </div></div>`;
+}
+
+/* ---------- render ---------- */
+function render(){
+  const active = document.activeElement && document.activeElement.id;
+  const caret = (active === "q") ? document.activeElement.selectionStart : null;
+  const screens = {login:screenLogin, adminLogin:screenAdminLogin, admin:screenAdmin, details:screenDetails, products:screenProducts, cart:screenCart, review:screenReview, success:screenSuccess, blocked:screenBlocked, loading:screenLoading};
+  const needsBa = ["details","products","cart","review","success"];
+  if (needsBa.includes(state.step) && !state.ba) state.step = "login";
+  if (state.step === "admin" && !state.adminData) state.step = "adminLogin";
+  const v = (screens[state.step] || screenLoading)();
+  document.getElementById("app").innerHTML =
+    `<div class="shell">${nav()}<main>${v.body}</main>${v.bar ? `<div class="bottom">${v.bar}</div>` : ""}</div>${alertBox()}`;
+  if (state.step === "products"){ renderProductList(); renderCartBar(); }
+  if (active){
+    const el = document.getElementById(active);
+    if (el){ el.focus({preventScroll:true}); if (caret !== null && el.setSelectionRange) el.setSelectionRange(caret, caret); }
+  }
+}
+
+function go(step){
+  if (step !== "review") state.confirmChecked = false;
+  if (step === "login") state.login.error = "";
+  if (step === "adminLogin") state.adminForm.error = "";
+  state.step = step;
+  render();
+  window.scrollTo(0, 0);
+}
+function selectBa(ba){
+  state.ba = ba; loadCart();
+  // Drop any saved cart items for products that were removed from the list
+  const live = new Set(PRODUCTS.map(p => p.sku));
+  ["stock","tester"].forEach(t => { state.cart[t] = state.cart[t].filter(i => live.has(i.sku)); });
+  saveCart();
+  state.step = "details"; render(); window.scrollTo(0, 0);
+}
+
+async function doSubmit(){
+  if (state.submitting) return;
+  state.submitting = true; state.submitError = ""; render();
+  const ci = cycleInfo();
+  const stockCount = state.cart.stock.length, testerCount = state.cart.tester.length;
+  const requestId = "REQ-" + state.ba.mobile.slice(-4) + "-" + Date.now().toString(36).toUpperCase();
+  const items = [
+    ...state.cart.stock.map(i => ({type:"Stock", sku:i.sku, barcode:i.barcode, name:i.name, brand:i.brand || ""})),
+    ...state.cart.tester.map(i => ({type:"Tester", sku:i.sku, barcode:i.barcode, name:i.name, brand:i.brand || ""}))
+  ];
+  try{
+    let r;
+    if (CONFIG.MODE === "demo"){
+      await sleep(900);
+      const t = uaeNow();
+      r = {submittedAt: todayText() + ", " + t.time, cycle:ci.label, stockCount, testerCount, requestId};
+      store.set(demoSubKey(state.ba.mobile), {...r, submittedAt: t.d + " " + MONTHS[t.m-1] + ", " + t.time, items});
+    } else {
+      const x = await postFlow({action:"submit", mobile:state.ba.mobile, pin:state.ba.pin, requestId, items});
+      if (!x.ok) throw Object.assign(new Error(x.error || "FAILED"), {code:x.error || "FAILED"});
+      r = {submittedAt:x.submittedAt || (todayText() + ", " + uaeNow().time), cycle:x.cycle || ci.label, stockCount:x.stockCount ?? stockCount, testerCount:x.testerCount ?? testerCount, requestId:x.requestId || requestId};
+      state.server.alreadySubmitted = true;
+      const sess = store.get("bareq.session", null);
+      if (sess && sess.server){ sess.server.alreadySubmitted = true; store.set("bareq.session", sess); }
+    }
+    state.lastResult = r;
+    state.cart = {stock:[], tester:[]}; saveCart();
+    state.confirmChecked = false; state.modal = null; state.submitting = false; state.step = "success";
+    render(); window.scrollTo(0, 0);
+  }catch(e){
+    const code = e.code || "NETWORK";
+    if (code === "CLOSED") state.server.windowOpen = false;
+    if (code === "ALREADY_SUBMITTED") state.server.alreadySubmitted = true;
+    if (code === "INVALID_LOGIN" || code === "INACTIVE"){ state.modal = null; state.submitting = false; store.del("bareq.session"); state.ba = null; state.login.error = "Please sign in again."; go("login"); return; }
+    state.submitError = {
+      CLOSED:"Submissions are closed right now. Your cart is still saved.",
+      ALREADY_SUBMITTED:"A request was already sent for this month.",
+      NO_URL:"The app is not connected to Power Automate yet."
+    }[code] || "Couldn't send. Check your internet and try again. Your cart is still saved.";
+    state.submitting = false;
+    render();
+  }
+}
+
+async function recheck(){
+  if (!state.ba || state.rechecking) return;
+  state.rechecking = true; render();
+  try{
+    const r = await postFlow({action:"login", mobile:state.ba.mobile, pin:state.ba.pin});
+    if (r.ok){
+      applyServer(r);
+      store.set("bareq.session", {mobile:state.ba.mobile, pin:state.ba.pin, name:r.baName, store:r.store, at:Date.now(), server:r});
+    }
+  }catch(e){}
+  state.rechecking = false; render();
+}
+
+/* ---------- start-up: restore a saved sign-in ---------- */
+async function resumeSession(){
+  const s = store.get("bareq.session", null);
+  if (!s || !s.mobile){ state.step = "login"; render(); return; }
+  if (CONFIG.MODE === "demo"){
+    const b = DEMO_BAS.find(x => x.mobile === s.mobile && x.pin === s.pin);
+    if (b) selectBa({mobile:b.mobile, pin:b.pin, name:b.name, store:b.store});
+    else { store.del("bareq.session"); state.step = "login"; render(); }
+    return;
+  }
+  // Opened again within the hour: use the saved details, no need to ask Excel again
+  if (s.at && s.server && Date.now() - s.at < 3600000){
+    applyServer(s.server);
+    selectBa({mobile:s.mobile, pin:s.pin, name:s.name, store:s.store});
+    return;
+  }
+  state.step = "loading"; render();
+  try{
+    const r = await postFlow({action:"login", mobile:s.mobile, pin:s.pin});
+    if (!r.ok){ store.del("bareq.session"); state.login.error = r.error === "INACTIVE" ? "Your account is not active. Please contact your manager." : "Please sign in again."; state.step = "login"; render(); return; }
+    applyServer(r);
+    store.set("bareq.session", {mobile:s.mobile, pin:s.pin, name:r.baName, store:r.store, at:Date.now(), server:r});
+    selectBa({mobile:s.mobile, pin:s.pin, name:r.baName, store:r.store});
+  }catch(e){
+    state.blocked = e.code === "NO_URL" ? "nourl" : "network"; state.step = "blocked"; render();
+  }
+}
+
+/* ---------- events ---------- */
+document.addEventListener("click", e => {
+  const el = e.target.closest("[data-action]");
+  if (!el) return;
+  const a = el.dataset.action;
+  if (a === "overlay"){ if (e.target === el && !state.submitting){ state.modal = null; state.submitError = ""; render(); } return; }
+  if (el.disabled) return;
+  switch (a){
+    case "login": doLogin(); break;
+    case "demo-fill": { const b = DEMO_BAS.find(x => x.mobile === el.dataset.mobile); if (b){ Object.assign(state.login, {mobile:b.mobile, pin:b.pin, error:""}); render(); } break; }
+    case "signout": signOut(); break;
+    case "admin-login": doAdminLogin(); break;
+    case "admin-refresh": refreshAdmin(); break;
+    case "admin-signout": adminSignOut(); break;
+    case "admin-toggle": state.adminOpen[el.dataset.id] = !state.adminOpen[el.dataset.id]; render(); break;
+    case "go": go(el.dataset.step); break;
+    case "filter": state.filter = el.dataset.filter; render(); break;
+    case "brand": state.brand = el.dataset.brand; render(); { const c = document.querySelector(".chip.on"); if (c) c.scrollIntoView({inline:"center", block:"nearest"}); } break;
+    case "clear-search": { state.query = ""; render(); const q = document.getElementById("q"); if (q) q.focus(); break; }
+    case "toggle":
+      toggleItem(el.dataset.type, el.dataset.sku);
+      if (state.step === "products"){ renderProductList(); renderCartBar(); }
+      break;
+    case "remove": removeItem(el.dataset.type, el.dataset.sku); render(); break;
+    case "open-confirm": state.modal = "confirm"; state.submitError = ""; render(); { const y = document.querySelector('.alert-btns [data-action="submit"]'); if (y) y.focus({preventScroll:true}); } break;
+    case "cancel-confirm": state.modal = null; state.submitError = ""; render(); break;
+    case "submit": doSubmit(); break;
+    case "retry": resumeSession(); break;
+    case "recheck": recheck(); break;
+    case "demo-window": state.demoWindow = el.dataset.val; state.confirmChecked = false; render(); break;
+    case "demo-reset":
+      store.clearAll();
+      Object.assign(state, {ba:null, cart:{stock:[], tester:[]}, query:"", filter:"all", confirmChecked:false, modal:null, demoWindow:"open", admin:null, adminData:null});
+      state.login = {mobile:"", pin:"", error:"", busy:false};
+      go("login");
+      break;
+  }
+});
+document.addEventListener("input", e => {
+  const id = e.target.id;
+  if (id === "q"){ state.query = e.target.value; renderProductList(); }
+  else if (id === "mobile") state.login.mobile = e.target.value;
+  else if (id === "pin") state.login.pin = e.target.value;
+  else if (id === "auser") state.adminForm.user = e.target.value;
+  else if (id === "apass") state.adminForm.password = e.target.value;
+});
+document.addEventListener("change", e => { if (e.target.id === "confirm"){ state.confirmChecked = e.target.checked; render(); } });
+document.addEventListener("submit", e => {
+  e.preventDefault();
+  if (e.target.id === "loginForm") doLogin();
+  if (e.target.id === "adminForm") doAdminLogin();
+});
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && state.modal && !state.submitting){ state.modal = null; state.submitError = ""; render(); }
+  if (e.key === "Enter"){
+    if (e.target.id === "q") e.target.blur();
+    if (e.target.id === "mobile" || e.target.id === "pin"){ e.preventDefault(); doLogin(); }
+    if (e.target.id === "auser" || e.target.id === "apass"){ e.preventDefault(); doAdminLogin(); }
+  }
+});
+
+(function boot(){
+  const a = store.get("bareq.admin", null, SS);
+  if (a && a.user){
+    state.admin = a;
+    loadAdmin(a.user, a.password).then(d => { state.adminData = d; go("admin"); }).catch(() => { store.del("bareq.admin", SS); state.admin = null; resumeSession(); });
+    return;
+  }
+  resumeSession();
+})();
+</script>
+</body>
+</html>
